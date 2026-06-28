@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+:root {
+  /* Surfaces */
+  --cream: #fff9f5;
+  --cream-deep: #fef2ea;
+  --card: #ffffff;
+
+  /* Text */
+  --charcoal: #3d3733;
+  --charcoal-soft: #7c726b;
+  --charcoal-muted: #a89c93;
+
+  /* Brand */
+  --brand-brown: #7c5847;
+  --coral: #f4836b;
+  --coral-deep: #ee6c54;
+
+  /* Pastel accents */
+  --peach: #ffd9c2;
+  --mint: #b6e3c8;
+  --lavender: #dccef5;
+  --sky: #c5e6f7;
+  --pink: #ffd4dd;
+  --sunshine: #ffd98a;
+
+  /* Lines + glass */
+  --border: rgba(124, 88, 71, 0.12);
+  --border-strong: rgba(124, 88, 71, 0.2);
+  --navbar-bg: rgba(255, 249, 245, 0.72);
+
+  /* Layout */
+  --site-max: 1180px;
+  --site-pad-x: 20px;
+  --nav-h: 72px;
+  --section-y: 80px;
+  --section-y-lg: 104px;
+
+  /* Type scale */
+  --hero-title-size: clamp(48px, 13vw, 88px);
+  --section-title-size: clamp(30px, 7vw, 44px);
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-cream-deep: var(--cream-deep);
+  --color-card: var(--card);
+
+  --color-charcoal: var(--charcoal);
+  --color-charcoal-soft: var(--charcoal-soft);
+  --color-charcoal-muted: var(--charcoal-muted);
+
+  --color-brand-brown: var(--brand-brown);
+  --color-coral: var(--coral);
+  --color-coral-deep: var(--coral-deep);
+
+  --color-peach: var(--peach);
+  --color-mint: var(--mint);
+  --color-lavender: var(--lavender);
+  --color-sky: var(--sky);
+  --color-pink: var(--pink);
+  --color-sunshine: var(--sunshine);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-poppins);
+
+  --radius-card: 28px;
+  --radius-soft: 20px;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 16px);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-poppins), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Layout helpers ---------- */
+.site-container {
+  width: 100%;
+  max-width: var(--site-max);
+  margin-inline: auto;
+  padding-inline: var(--site-pad-x);
+  box-sizing: border-box;
+}
+
+.section-pad {
+  padding-block: var(--section-y);
+}
+
+.section-pad-lg {
+  padding-block: var(--section-y-lg);
+}
+
+/* ---------- Type helpers ---------- */
+.font-display {
+  font-family: var(--font-playfair), Georgia, serif;
+}
+
+.hero-title {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: var(--hero-title-size);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.section-title {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: var(--section-title-size);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Brand atoms ---------- */
+.btn-coral {
+  background-image: linear-gradient(135deg, #ff9d86 0%, #f1735b 100%);
+  color: #fff;
+  box-shadow: 0 12px 26px -10px rgba(238, 108, 84, 0.6);
+}
+
+.text-gradient-coral {
+  background-image: linear-gradient(120deg, #f4836b, #ef6c8f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.card-soft {
+  background: var(--card);
+  border-radius: var(--radius-card);
+  box-shadow: 0 14px 38px -18px rgba(124, 88, 71, 0.32);
+}
+
+.shadow-soft {
+  box-shadow: 0 14px 38px -18px rgba(124, 88, 71, 0.32);
+}
+
+.shadow-soft-lg {
+  box-shadow: 0 30px 60px -28px rgba(124, 88, 71, 0.42);
+}
+
+/* Pretty pastel scrollbar-free gallery rail */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --site-pad-x: clamp(24px, 4vw, 40px);
+    --nav-h: 76px;
+    --section-y: 96px;
+    --section-y-lg: 128px;
+  }
+}
