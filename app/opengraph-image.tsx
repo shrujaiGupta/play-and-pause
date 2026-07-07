@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const alt =
-  "Play & Pause — curated playdates and creative experiences in Jaipur";
+  "Play & Pause: curated playdates and creative experiences in Jaipur";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -67,7 +67,7 @@ export default function OpengraphImage() {
             fontFamily: "sans-serif",
           }}
         >
-          Curated playdates &amp; creative experiences · Jaipur · Ages 2–6
+          Curated playdates &amp; creative experiences · Jaipur · Ages 1.5+
         </div>
       </div>
     ),

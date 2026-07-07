@@ -1,9 +1,8 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import Button from "@/components/ui/Button";
-import Placeholder from "@/components/ui/Placeholder";
 import { Cloud, Heart } from "@/components/decor/Doodles";
 import { Float } from "@/components/decor/Float";
 
@@ -31,11 +30,15 @@ export default function Founder() {
 
           <div className="relative grid items-center gap-10 lg:grid-cols-[300px_1fr_300px] lg:gap-12">
             <div className="mx-auto w-full max-w-xs lg:max-w-none">
-              <Placeholder
-                tone="peach"
-                scene="portrait"
-                className="aspect-[4/5] w-full shadow-soft-lg ring-1 ring-white/60"
-              />
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-card)] shadow-soft-lg ring-1 ring-white/60">
+                <Image
+                  src="/founder.webp"
+                  alt="Somya Gupta, founder of Play & Pause"
+                  fill
+                  sizes="(max-width: 1024px) 20rem, 300px"
+                  className="object-cover"
+                />
+              </div>
             </div>
 
             <div className="text-center lg:text-left">
@@ -49,22 +52,18 @@ export default function Founder() {
                 Corporate professional · Toddler mom · Founder
               </p>
               <p className="mt-5 text-[15px] leading-relaxed text-charcoal-soft">
-                Play &amp; Pause was born from a simple belief — that children learn best through
+                Play &amp; Pause was born from a simple belief, that children learn best through
                 play, creativity and meaningful experiences, and that moms deserve a space to
                 pause, connect and recharge. What started as a few playdates for friends has grown
                 into a little community of families who value slow, screen-free, joyful moments.
               </p>
-              <div className="mt-7 flex justify-center lg:justify-start">
-                <Button href="#contact" variant="outline" size="lg">
-                  Read My Story
-                </Button>
-              </div>
             </div>
 
             <figure className="relative rounded-[var(--radius-soft)] bg-white/70 p-6 shadow-soft backdrop-blur">
               <Quote className="h-8 w-8 text-coral/40" />
               <blockquote className="mt-3 font-display text-lg leading-relaxed text-brand-brown">
-                Through every session, my goal is to create joyful memories that last a lifetime.
+                At Play &amp; Pause, we believe that some of the biggest childhood memories are
+                made through the smallest moments of play.
               </blockquote>
               <Heart className="mt-4 h-5 w-5 text-pink" />
             </figure>

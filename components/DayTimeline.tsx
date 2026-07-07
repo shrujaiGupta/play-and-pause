@@ -33,7 +33,7 @@ export default function DayTimeline() {
         <SectionHeading
           eyebrow="A day at Play & Pause"
           title="A gentle little rhythm"
-          description="Every session flows softly from one moment to the next — never rushed, always full of wonder."
+          description="Every session flows softly from one moment to the next, never rushed, always full of wonder."
         />
 
         <div className="relative mx-auto mt-14 max-w-3xl">

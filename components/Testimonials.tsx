@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Quote, Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { useCarousel, CarouselNav } from "@/components/ui/CarouselControls";
 import { TESTIMONIALS } from "@/lib/content";
 
 const TONE_BG: Record<string, string> = {
@@ -16,13 +16,7 @@ const TONE_BG: Record<string, string> = {
 };
 
 export default function Testimonials() {
-  const railRef = useRef<HTMLDivElement>(null);
-
-  const scrollBy = (dir: 1 | -1) => {
-    const rail = railRef.current;
-    if (!rail) return;
-    rail.scrollBy({ left: dir * (rail.clientWidth * 0.8), behavior: "smooth" });
-  };
+  const { railRef, scrollByPage } = useCarousel();
 
   return (
     <section id="testimonials" className="section-pad bg-cream">
@@ -31,59 +25,47 @@ export default function Testimonials() {
           <SectionHeading
             align="left"
             eyebrow="Stories from our community"
-            title="Loved by moms across Jaipur"
+            title={
+              <>
+                Loved by moms across <span className="text-coral">Jaipur</span>
+              </>
+            }
           />
-          <div className="flex gap-2">
-            <button
-              onClick={() => scrollBy(-1)}
-              aria-label="Previous testimonials"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-card text-brand-brown shadow-soft transition hover:-translate-y-0.5 hover:text-coral-deep"
-            >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              onClick={() => scrollBy(1)}
-              aria-label="Next testimonials"
-              className="flex h-11 w-11 items-center justify-center rounded-full bg-card text-brand-brown shadow-soft transition hover:-translate-y-0.5 hover:text-coral-deep"
-            >
-              <ChevronRight size={20} />
-            </button>
-          </div>
+          <CarouselNav
+            onPrev={() => scrollByPage(-1)}
+            onNext={() => scrollByPage(1)}
+            label="testimonials"
+          />
         </div>
 
         <div
           ref={railRef}
-          className="no-scrollbar mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4"
+          className="no-scrollbar mt-10 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto pb-4"
         >
           {TESTIMONIALS.map((t, i) => (
             <motion.figure
-              key={t.name}
+              key={`${t.name}-${i}`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="flex w-[280px] shrink-0 snap-start flex-col rounded-[var(--radius-card)] bg-card p-6 shadow-soft sm:w-[320px]"
+              className="flex shrink-0 basis-full snap-start flex-col rounded-[var(--radius-card)] bg-card p-6 shadow-soft sm:basis-[calc((100%_-_20px)/2)] lg:basis-[calc((100%_-_40px)/3)]"
             >
               <Quote className="h-7 w-7 text-coral/40" />
-              <div className="mt-3 flex gap-0.5" aria-label="5 out of 5 stars">
-                {Array.from({ length: 5 }).map((_, s) => (
-                  <Star key={s} className="h-4 w-4 fill-sunshine text-sunshine" />
-                ))}
-              </div>
               <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-charcoal">
                 {t.quote}
               </blockquote>
               <figcaption className="mt-5 flex items-center gap-3 border-t border-border pt-4">
                 <span
                   className={cn(
-                    "flex h-10 w-10 items-center justify-center rounded-full font-display text-base font-bold",
+                    "flex h-10 w-10 shrink-0 items-center justify-center rounded-full font-display text-base font-bold",
                     TONE_BG[t.tone],
                   )}
                   aria-hidden
                 >
                   {t.name.charAt(0)}
                 </span>
-                <span>
+                <span className="min-w-0">
                   <span className="block text-sm font-semibold text-brand-brown">{t.name}</span>
                   <span className="block text-xs text-charcoal-muted">{t.role}</span>
                 </span>

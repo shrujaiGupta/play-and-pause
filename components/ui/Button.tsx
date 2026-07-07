@@ -2,12 +2,14 @@ import Link from "next/link";
 import type { ComponentProps, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-type Variant = "coral" | "outline" | "ghost";
+type Variant = "coral" | "green" | "outline" | "ghost";
 type Size = "md" | "lg";
 
 const VARIANTS: Record<Variant, string> = {
   coral:
     "btn-coral hover:shadow-[0_18px_34px_-12px_rgba(238,108,84,0.7)] hover:-translate-y-0.5",
+  green:
+    "btn-green hover:shadow-[0_18px_34px_-12px_rgba(31,168,85,0.65)] hover:-translate-y-0.5",
   outline:
     "bg-card text-brand-brown border border-border-strong hover:border-coral/60 hover:-translate-y-0.5 shadow-soft",
   ghost: "bg-transparent text-brand-brown hover:text-coral-deep",
@@ -15,7 +17,7 @@ const VARIANTS: Record<Variant, string> = {
 
 const SIZES: Record<Size, string> = {
   md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-[15px]",
+  lg: "px-6 py-3 text-sm",
 };
 
 const baseClass =

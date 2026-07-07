@@ -35,7 +35,7 @@ export default function Footer() {
             <Logo />
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-charcoal-soft">
               Play. Create. Learn. Pause. Connect. Curated creative experiences for little ones
-              aged 2–6 and the amazing moms who do it all.
+              from 1.5 years onwards and the amazing moms who do it all.
             </p>
             <div className="mt-5 flex gap-2.5">
               {SOCIALS.map(({ label, href, Icon }) => (

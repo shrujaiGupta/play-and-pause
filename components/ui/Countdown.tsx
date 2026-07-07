@@ -42,7 +42,7 @@ export default function Countdown({ target }: { target: string }) {
         <div key={key} className="flex items-center gap-2.5">
           <div className="min-w-[52px] rounded-2xl bg-white px-2 py-2.5 text-center shadow-[0_8px_20px_-12px_rgba(124,88,71,0.4)]">
             <span className="block font-display text-2xl font-bold leading-none text-brand-brown tabular-nums">
-              {time ? pad(time[key]) : "––"}
+              {time ? pad(time[key]) : "--"}
             </span>
             <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wide text-charcoal-muted">
               {label}

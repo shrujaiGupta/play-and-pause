@@ -15,7 +15,7 @@ import "./globals.css";
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -26,10 +26,10 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const TITLE = "Play & Pause — Curated Playdates & Creative Experiences in Jaipur";
+const TITLE = "Play & Pause: Curated Playdates & Creative Experiences in Jaipur";
 
 export const viewport: Viewport = {
-  themeColor: "#fff9f5",
+  themeColor: "#fef6ea",
   width: "device-width",
   initialScale: 1,
 };
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     "mom and child activities",
     "toddler playgroup Jaipur",
     "screen-free play",
-    "children aged 2-6 Jaipur",
+    "children 1.5 years and up Jaipur",
   ],
   authors: [{ name: SITE_NAME }],
   creator: SITE_NAME,

@@ -8,3 +8,6 @@ export function whatsappLink(message: string = DEFAULT_MESSAGE) {
 }
 
 export const BOOKING_LINK = whatsappLink();
+
+export const WHATSAPP_COMMUNITY_LINK =
+  "https://chat.whatsapp.com/EJOGrWq0ZVxJyKa9BMowJ8";

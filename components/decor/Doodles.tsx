@@ -51,10 +51,38 @@ export function Rainbow(props: DoodleProps) {
   return (
     <svg viewBox="0 0 120 64" fill="none" aria-hidden={title ? undefined : true} {...rest}>
       {title ? <title>{title}</title> : null}
-      <path d="M8 60a52 52 0 0 1 104 0" stroke="#f4a08c" strokeWidth="8" strokeLinecap="round" />
-      <path d="M20 60a40 40 0 0 1 80 0" stroke="#ffd98a" strokeWidth="8" strokeLinecap="round" />
-      <path d="M32 60a28 28 0 0 1 56 0" stroke="#b6e3c8" strokeWidth="8" strokeLinecap="round" />
-      <path d="M44 60a16 16 0 0 1 32 0" stroke="#bcd9f3" strokeWidth="8" strokeLinecap="round" />
+      <path d="M8 60a52 52 0 0 1 104 0" stroke="#f5806a" strokeWidth="8" strokeLinecap="round" />
+      <path d="M20 60a40 40 0 0 1 80 0" stroke="#f6a01f" strokeWidth="8" strokeLinecap="round" />
+      <path d="M32 60a28 28 0 0 1 56 0" stroke="#3fb0ac" strokeWidth="8" strokeLinecap="round" />
+      <path d="M44 60a16 16 0 0 1 32 0" stroke="#6ea6d4" strokeWidth="8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function Dots(props: DoodleProps) {
+  const { title, rest } = base(props);
+  return (
+    <svg viewBox="0 0 40 40" fill="none" aria-hidden={title ? undefined : true} {...rest}>
+      {title ? <title>{title}</title> : null}
+      <circle cx="10" cy="13" r="3.4" fill="#f6a01f" />
+      <circle cx="24" cy="8" r="2.8" fill="#f5806a" />
+      <circle cx="31" cy="20" r="3.2" fill="#6ea6d4" />
+      <circle cx="15" cy="27" r="2.6" fill="#93b23e" />
+      <circle cx="28" cy="31" r="2.4" fill="#a15fa8" />
+    </svg>
+  );
+}
+
+export function Sprig(props: DoodleProps) {
+  const { title, rest } = base(props);
+  return (
+    <svg viewBox="0 0 44 72" fill="none" aria-hidden={title ? undefined : true} {...rest}>
+      {title ? <title>{title}</title> : null}
+      <path d="M22 71C20 52 20 30 25 5" stroke="#9cbf4d" strokeWidth="2.2" strokeLinecap="round" />
+      <path d="M21 55c-8-1-12-6-12-14 8 1 13 6 12 14Z" fill="#b3d17a" />
+      <path d="M23 43c8-1 12-6 12-14-8 1-13 6-12 14Z" fill="#a3c85f" />
+      <path d="M22 31c-7-1-10-5-10-12 7 1 11 5 10 12Z" fill="#c0dc92" />
+      <path d="M24 21c6-1 9-5 9-11-6 1-10 5-9 11Z" fill="#b3d17a" />
     </svg>
   );
 }

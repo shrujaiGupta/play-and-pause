@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
-import { BOOKING_LINK } from "@/lib/whatsapp";
+import { WHATSAPP_COMMUNITY_LINK } from "@/lib/whatsapp";
 
 export default function FloatingBook() {
   const [show, setShow] = useState(false);
@@ -19,10 +19,10 @@ export default function FloatingBook() {
     <AnimatePresence>
       {show && (
         <motion.a
-          href={BOOKING_LINK}
+          href={WHATSAPP_COMMUNITY_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label="Book a session on WhatsApp"
+          aria-label="Join our WhatsApp community"
           initial={{ opacity: 0, scale: 0.6, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 20 }}
@@ -31,7 +31,7 @@ export default function FloatingBook() {
         >
           <span className="absolute inset-0 -z-10 animate-ping rounded-full bg-coral/40" />
           <WhatsAppIcon className="h-5 w-5" />
-          <span className="hidden sm:inline">Book a Session</span>
+          <span className="hidden sm:inline">Join Community</span>
         </motion.a>
       )}
     </AnimatePresence>

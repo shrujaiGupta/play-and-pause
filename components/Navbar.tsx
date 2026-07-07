@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { NAV_LINKS } from "@/lib/content";
-import { BOOKING_LINK } from "@/lib/whatsapp";
+import { WHATSAPP_COMMUNITY_LINK } from "@/lib/whatsapp";
 import Logo from "@/components/Logo";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 
@@ -56,7 +56,7 @@ export default function Navbar() {
         )}
       >
         <div className="site-container flex h-[var(--nav-h)] items-center justify-between gap-4">
-          <a href="#home" aria-label="Play & Pause — home" className="shrink-0">
+          <a href="#home" aria-label="Play and Pause home" className="shrink-0">
             <Logo />
           </a>
 
@@ -82,12 +82,12 @@ export default function Navbar() {
 
           <div className="flex items-center gap-2">
             <a
-              href={BOOKING_LINK}
+              href={WHATSAPP_COMMUNITY_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-coral hidden items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-12px_rgba(238,108,84,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-coral/60 sm:inline-flex"
             >
-              Book a Session
+              Join WhatsApp Community
               <WhatsAppIcon className="h-4 w-4" />
             </a>
             <button
@@ -149,13 +149,13 @@ export default function Navbar() {
               </nav>
               <div className="px-4 pb-7">
                 <a
-                  href={BOOKING_LINK}
+                  href={WHATSAPP_COMMUNITY_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setMobileOpen(false)}
                   className="btn-coral flex w-full items-center justify-center gap-2 rounded-full px-5 py-3.5 text-sm font-semibold"
                 >
-                  Book a Session
+                  Join WhatsApp Community
                   <WhatsAppIcon className="h-4 w-4" />
                 </a>
               </div>

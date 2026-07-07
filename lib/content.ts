@@ -2,10 +2,10 @@ import type { Scene, Tone } from "@/components/ui/Placeholder";
 
 export const NAV_LINKS = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#founder" },
   { label: "Sessions", href: "#sessions" },
   { label: "Gallery", href: "#gallery" },
   { label: "Happy Families", href: "#testimonials" },
+  { label: "About", href: "#founder" },
   { label: "Contact", href: "#contact" },
 ] as const;
 
@@ -14,15 +14,15 @@ export const SESSION = {
   title: "Little Hands, Happy Smiles",
   theme: "A Dental Themed Creative Experience",
   date: "Sunday, 5 July 2026",
-  time: "4:00 – 6:00 PM",
+  time: "4:00 to 6:00 PM",
   venue: "Malviya Nagar, Jaipur",
-  ageRange: "2 – 6 Years",
+  ageRange: "1.5 Years & Up",
   price: "₹499",
   priceNote: "per child",
   spots: "Only a few spots left",
   countdownTarget: "2026-07-05T16:00:00+05:30",
   whatsappMessage:
-    "Hi!\nI'd love to register for the upcoming Play & Pause session — Little Hands, Happy Smiles.",
+    "Hi!\nI'd love to register for the upcoming Play & Pause session, Little Hands, Happy Smiles.",
 } as const;
 
 export type Testimonial = {
@@ -35,57 +35,69 @@ export type Testimonial = {
 export const TESTIMONIALS: Testimonial[] = [
   {
     quote:
-      "The most thoughtfully planned playdate we've ever attended. My daughter absolutely loved every minute of it.",
-    name: "Neha Sharma",
-    role: "Mom of Aanya, 4",
+      "We had such a wonderful time at Play & Pause! The space is so welcoming, clean and beautifully designed. My daughter loved the open play area, the lovely toys and the drawing session. Somya has created a truly special place for little ones, and we will definitely be back!",
+    name: "Richa Juneja",
+    role: "Mom of a 2-year-old",
     tone: "coral",
   },
   {
     quote:
-      "Finally a place where my son learns and plays, and I get to relax and actually connect with other moms.",
-    name: "Priyanka Mehta",
-    role: "Mom of Vivaan, 3",
-    tone: "lavender",
-  },
-  {
-    quote:
-      "Every little detail is so well planned. The team truly puts their heart into every single session.",
-    name: "Aarti Singh",
-    role: "Mom of Myra, 5",
+      "Thank you so much for curating such wonderful baby-friendly activities. My little one loved the pom poms and the action-packed rhyme time. My favourite part was connecting with the other mammas and watching the tiny humans unfold their little personalities. Looking forward to the next session! ❤️",
+    name: "Gayatri",
+    role: "Mom of a 2-year-old",
     tone: "mint",
   },
   {
     quote:
-      "The activities are so creative and the vibe is just beautiful. We genuinely can't wait for the next one!",
-    name: "Ritu Agarwal",
-    role: "Mom of Kabir, 2",
+      "It was a wonderful experience for both me and my child. The activities were so thoughtfully planned, engaging and age-appropriate. My daughter loved exploring at her own pace and was especially happy during the sensory play. It was lovely to see her so engaged, curious and excited.",
+    name: "Vamika Alwani",
+    role: "Mom of an 18-month-old",
+    tone: "lavender",
+  },
+  {
+    quote:
+      "My son enjoyed it so much! He loved the mom-and-son sticker activity the most. It was such an enjoyable evening away from our routine, and he got to socialise with other kids just before starting pre-school.",
+    name: "Pooja",
+    role: "Mom of a 2-year-old",
     tone: "sky",
   },
   {
     quote:
-      "Calm, warm and screen-free — exactly the kind of childhood moments I want for my little one.",
-    name: "Sneha Kapoor",
-    role: "Mom of Ira, 4",
+      "Thank you for such a lovely session! My daughter had so much fun and even danced happily. She learned a new word, ‘crown’, which made me so happy. I also really appreciated the helpful guidance on oral health. We are looking forward to more sessions! 💛",
+    name: "Vamika Alwani",
+    role: "Mom of an 18-month-old",
     tone: "pink",
+  },
+  {
+    quote:
+      "The session was truly fantastic! My son enjoyed it so much that he stayed happy the entire day after returning home. Overall, it was a wonderful experience. Thank you for organising such an engaging and enjoyable session. 😊",
+    name: "Veena",
+    role: "Mom of a 3-year-old",
+    tone: "coral",
+  },
+  {
+    quote:
+      "It was a great experience! It was so helpful to get all our doubts cleared, with lovely guidance on mom-and-tot oral hygiene by Dr. Harshita. All the activities around the theme were impactful, and thank you to all the mothers and kids for such a cheerful Sunday! 🌈",
+    name: "Priyanka",
+    role: "Mom of a 2-year-old",
+    tone: "sky",
   },
 ];
 
 export type GalleryItem = {
-  tone: Tone;
-  scene: Scene;
-  label: string;
-  span: string;
+  src: string;
+  alt: string;
 };
 
 export const GALLERY: GalleryItem[] = [
-  { tone: "peach", scene: "blocks", label: "Free Play", span: "row-span-2" },
-  { tone: "mint", scene: "paint", label: "Creative Corner", span: "" },
-  { tone: "lavender", scene: "momchild", label: "Together Time", span: "" },
-  { tone: "pink", scene: "hands", label: "Messy & Happy", span: "row-span-2" },
-  { tone: "sky", scene: "child", label: "Little Explorers", span: "" },
-  { tone: "sun", scene: "paint", label: "Tiny Artists", span: "" },
-  { tone: "coral", scene: "momchild", label: "Bonding", span: "" },
-  { tone: "lavender", scene: "blocks", label: "Build & Learn", span: "" },
+  { src: "/gallery/g1.jpg", alt: "A mom and her daughter with a Play & Pause oral-hygiene activity sheet" },
+  { src: "/gallery/g2.jpg", alt: "Little ones enjoying a Play & Pause creative playdate" },
+  { src: "/gallery/g3.jpg", alt: "Moms and toddlers together at a Play & Pause playdate" },
+  { src: "/gallery/g4.jpg", alt: "Hands-on craft fun at a Play & Pause session" },
+  { src: "/gallery/g5.jpg", alt: "A joyful moment from a Play & Pause playdate" },
+  { src: "/gallery/g6.jpg", alt: "Creative activities at a Play & Pause session" },
+  { src: "/gallery/g7.jpg", alt: "Screen-free play and bonding at Play & Pause" },
+  { src: "/gallery/g8.jpg", alt: "Happy families at a Play & Pause session in Jaipur" },
 ];
 
 export const TIMELINE = [

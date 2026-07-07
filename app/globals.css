@@ -2,8 +2,8 @@
 
 :root {
   /* Surfaces */
-  --cream: #fff9f5;
-  --cream-deep: #fef2ea;
+  --cream: #fef6ea;
+  --cream-deep: #fbeeda;
   --card: #ffffff;
 
   /* Text */
@@ -13,8 +13,17 @@
 
   /* Brand */
   --brand-brown: #7c5847;
-  --coral: #f4836b;
-  --coral-deep: #ee6c54;
+  --coral: #f5806a;
+  --coral-deep: #ef6a51;
+
+  /* Logo palette (exact brand hues) */
+  --green: #93b23e;
+  --teal: #3fb0ac;
+  --purple: #a15fa8;
+  --blue: #6ea6d4;
+  --orange: #f6a01f;
+  --rose: #f4707a;
+  --ink: #58564f;
 
   /* Pastel accents */
   --peach: #ffd9c2;
@@ -27,17 +36,17 @@
   /* Lines + glass */
   --border: rgba(124, 88, 71, 0.12);
   --border-strong: rgba(124, 88, 71, 0.2);
-  --navbar-bg: rgba(255, 249, 245, 0.72);
+  --navbar-bg: rgba(254, 246, 234, 0.72);
 
   /* Layout */
-  --site-max: 1180px;
+  --site-max: 1280px;
   --site-pad-x: 20px;
   --nav-h: 72px;
   --section-y: 80px;
   --section-y-lg: 104px;
 
   /* Type scale */
-  --hero-title-size: clamp(48px, 13vw, 88px);
+  --hero-title-size: clamp(38px, 10vw, 82px);
   --section-title-size: clamp(30px, 7vw, 44px);
 }
 
@@ -60,6 +69,14 @@
   --color-sky: var(--sky);
   --color-pink: var(--pink);
   --color-sunshine: var(--sunshine);
+
+  --color-green: var(--green);
+  --color-teal: var(--teal);
+  --color-purple: var(--purple);
+  --color-blue: var(--blue);
+  --color-orange: var(--orange);
+  --color-rose: var(--rose);
+  --color-ink: var(--ink);
 
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
@@ -123,13 +140,15 @@ body {
 .hero-title {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: var(--hero-title-size);
-  line-height: 1;
+  font-weight: 700;
+  line-height: 1.02;
   letter-spacing: -0.01em;
 }
 
 .section-title {
   font-family: var(--font-playfair), Georgia, serif;
   font-size: var(--section-title-size);
+  font-weight: 700;
   line-height: 1.08;
   letter-spacing: -0.01em;
 }
@@ -139,6 +158,12 @@ body {
   background-image: linear-gradient(135deg, #ff9d86 0%, #f1735b 100%);
   color: #fff;
   box-shadow: 0 12px 26px -10px rgba(238, 108, 84, 0.6);
+}
+
+.btn-green {
+  background-image: linear-gradient(135deg, #3ad06a 0%, #1fa855 100%);
+  color: #fff;
+  box-shadow: 0 12px 26px -10px rgba(31, 168, 85, 0.55);
 }
 
 .text-gradient-coral {
