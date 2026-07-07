@@ -49,7 +49,7 @@ export default function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="flex shrink-0 basis-full snap-start flex-col rounded-[var(--radius-card)] bg-card p-6 shadow-soft sm:basis-[calc((100%_-_20px)/2)] lg:basis-[calc((100%_-_40px)/3)]"
+              className="flex shrink-0 basis-full snap-start snap-always flex-col rounded-[var(--radius-card)] bg-card p-6 shadow-soft sm:basis-[calc((100%_-_20px)/2)] sm:snap-normal lg:basis-[calc((100%_-_40px)/3)]"
             >
               <Quote className="h-7 w-7 text-coral/40" />
               <blockquote className="mt-4 flex-1 text-[14.5px] leading-relaxed text-charcoal">

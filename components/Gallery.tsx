@@ -41,7 +41,7 @@ export default function Gallery() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.5, delay: (i % 3) * 0.08 }}
-              className="group relative aspect-[4/5] shrink-0 basis-[78%] snap-start overflow-hidden rounded-[var(--radius-card)] shadow-soft sm:basis-[calc((100%_-_20px)/2)] lg:basis-[calc((100%_-_40px)/3)]"
+              className="group relative aspect-[4/5] shrink-0 basis-[78%] snap-start snap-always overflow-hidden rounded-[var(--radius-card)] shadow-soft sm:basis-[calc((100%_-_20px)/2)] sm:snap-normal lg:basis-[calc((100%_-_40px)/3)]"
             >
               <Image
                 src={item.src}
