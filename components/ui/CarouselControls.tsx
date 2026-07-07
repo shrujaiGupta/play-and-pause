@@ -32,7 +32,7 @@ export function useCarousel(intervalMs = 6000) {
   useEffect(() => {
     const rail = railRef.current;
     if (!rail) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let visible = false;
 
@@ -40,40 +40,61 @@ export function useCarousel(intervalMs = 6000) {
     const stop = () => {
       stoppedRef.current = true;
     };
+
+    // A horizontal-only scroll container makes browsers translate a vertical
+    // wheel/trackpad gesture into horizontal scroll, which traps the page: the
+    // visitor can't scroll past the section while the cursor is over it. When
+    // the gesture is vertical, hand it back to the page instead of the rail.
+    // A deliberate horizontal gesture still browses the cards (and stops autoplay).
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        const factor = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? window.innerHeight : 1;
+        window.scrollBy(0, e.deltaY * factor);
+      } else {
+        stop();
+      }
+    };
+
     rail.addEventListener("pointerdown", stop);
     rail.addEventListener("touchstart", stop, { passive: true });
-    rail.addEventListener("wheel", stop, { passive: true });
+    rail.addEventListener("wheel", onWheel, { passive: false });
     rail.addEventListener("keydown", stop);
     rail.addEventListener("focusin", stop);
 
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        visible = entry.isIntersecting;
-      },
-      { threshold: 0.35 },
-    );
-    io.observe(rail);
+    // Autoplay only under allowed motion; the wheel fix above always applies.
+    let io: IntersectionObserver | undefined;
+    let id: number | undefined;
+    if (!reduceMotion) {
+      io = new IntersectionObserver(
+        ([entry]) => {
+          visible = entry.isIntersecting;
+        },
+        { threshold: 0.35 },
+      );
+      io.observe(rail);
 
-    const id = window.setInterval(() => {
-      if (stoppedRef.current || !visible) return;
-      const el = railRef.current;
-      if (!el) return;
-      const first = el.children[0] as HTMLElement | undefined;
-      const step = first ? first.offsetWidth + GAP : el.clientWidth;
-      const maxScroll = el.scrollWidth - el.clientWidth;
-      if (el.scrollLeft >= maxScroll - 4) {
-        el.scrollTo({ left: 0, behavior: "smooth" }); // loop back to the start
-      } else {
-        el.scrollBy({ left: step, behavior: "smooth" });
-      }
-    }, intervalMs);
+      id = window.setInterval(() => {
+        if (stoppedRef.current || !visible) return;
+        const el = railRef.current;
+        if (!el) return;
+        const first = el.children[0] as HTMLElement | undefined;
+        const step = first ? first.offsetWidth + GAP : el.clientWidth;
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (el.scrollLeft >= maxScroll - 4) {
+          el.scrollTo({ left: 0, behavior: "smooth" }); // loop back to the start
+        } else {
+          el.scrollBy({ left: step, behavior: "smooth" });
+        }
+      }, intervalMs);
+    }
 
     return () => {
-      window.clearInterval(id);
-      io.disconnect();
+      if (id !== undefined) window.clearInterval(id);
+      io?.disconnect();
       rail.removeEventListener("pointerdown", stop);
       rail.removeEventListener("touchstart", stop);
-      rail.removeEventListener("wheel", stop);
+      rail.removeEventListener("wheel", onWheel);
       rail.removeEventListener("keydown", stop);
       rail.removeEventListener("focusin", stop);
     };
