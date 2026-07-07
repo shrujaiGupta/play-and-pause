@@ -7,15 +7,25 @@ const GAP = 20; // matches the rail's gap-5 (1.25rem)
 
 /**
  * Shared horizontal-carousel behaviour: a ref for the scroll rail, a manual
- * page(dir) scroller, and a gentle auto-advance that loops, pauses on hover /
- * focus, and is disabled under prefers-reduced-motion.
+ * page(dir) scroller, and a gentle auto-advance that loops but stays out of the
+ * visitor's way. It:
+ *   - only advances while the rail is actually on-screen,
+ *   - stops for the rest of the visit the moment the visitor takes control
+ *     (swipe, drag, wheel/trackpad, arrow tap, keyboard focus), so it never
+ *     yanks the view mid-read,
+ *   - is disabled entirely under prefers-reduced-motion.
+ * We key "took control" off user-initiated events (pointer/touch/wheel/focus),
+ * NOT scroll — our own smooth-scroll fires scroll events and would otherwise
+ * stop autoplay instantly.
  */
-export function useCarousel(intervalMs = 3500) {
+export function useCarousel(intervalMs = 6000) {
   const railRef = useRef<HTMLDivElement>(null);
+  const stoppedRef = useRef(false);
 
   const scrollByPage = (dir: 1 | -1) => {
     const rail = railRef.current;
     if (!rail) return;
+    stoppedRef.current = true; // arrow taps count as taking control
     rail.scrollBy({ left: dir * rail.clientWidth, behavior: "smooth" });
   };
 
@@ -24,20 +34,28 @@ export function useCarousel(intervalMs = 3500) {
     if (!rail) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    let paused = false;
-    const pause = () => {
-      paused = true;
+    let visible = false;
+
+    // Any genuine user interaction stops autoplay for the rest of the visit.
+    const stop = () => {
+      stoppedRef.current = true;
     };
-    const resume = () => {
-      paused = false;
-    };
-    rail.addEventListener("pointerenter", pause);
-    rail.addEventListener("pointerleave", resume);
-    rail.addEventListener("focusin", pause);
-    rail.addEventListener("focusout", resume);
+    rail.addEventListener("pointerdown", stop);
+    rail.addEventListener("touchstart", stop, { passive: true });
+    rail.addEventListener("wheel", stop, { passive: true });
+    rail.addEventListener("keydown", stop);
+    rail.addEventListener("focusin", stop);
+
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = entry.isIntersecting;
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(rail);
 
     const id = window.setInterval(() => {
-      if (paused) return;
+      if (stoppedRef.current || !visible) return;
       const el = railRef.current;
       if (!el) return;
       const first = el.children[0] as HTMLElement | undefined;
@@ -52,10 +70,12 @@ export function useCarousel(intervalMs = 3500) {
 
     return () => {
       window.clearInterval(id);
-      rail.removeEventListener("pointerenter", pause);
-      rail.removeEventListener("pointerleave", resume);
-      rail.removeEventListener("focusin", pause);
-      rail.removeEventListener("focusout", resume);
+      io.disconnect();
+      rail.removeEventListener("pointerdown", stop);
+      rail.removeEventListener("touchstart", stop);
+      rail.removeEventListener("wheel", stop);
+      rail.removeEventListener("keydown", stop);
+      rail.removeEventListener("focusin", stop);
     };
   }, [intervalMs]);
 

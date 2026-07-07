@@ -7,7 +7,7 @@ import { useCarousel, CarouselNav } from "@/components/ui/CarouselControls";
 import { GALLERY } from "@/lib/content";
 
 export default function Gallery() {
-  const { railRef, scrollByPage } = useCarousel(3200);
+  const { railRef, scrollByPage } = useCarousel(5000);
 
   return (
     <section id="gallery" className="section-pad bg-cream-deep">

@@ -87,6 +87,41 @@ export function Sprig(props: DoodleProps) {
   );
 }
 
+// A clean, clearly-drawn botanical leaf branch — crisp filled leaves along a
+// gently curved stem, with a small bud at the tip. Sage-green to suit the cream
+// backdrop. Scale it with a className (e.g. `h-20 w-auto`).
+export function LeafBranch(props: DoodleProps) {
+  const { title, rest } = base(props);
+  // [x, y, rotate(deg), scale] — leaf bases placed along the stem, alternating.
+  const leaves: Array<[number, number, number, number]> = [
+    [47, 118, -50, 0.94],
+    [48, 100, 50, 1],
+    [49, 82, -47, 0.95],
+    [50, 64, 45, 0.9],
+    [50, 47, -40, 0.8],
+    [50, 34, 38, 0.7],
+    [49, 22, -14, 0.52],
+    [49, 22, 14, 0.52],
+  ];
+  return (
+    <svg viewBox="0 0 96 152" fill="none" aria-hidden={title ? undefined : true} {...rest}>
+      {title ? <title>{title}</title> : null}
+      <path
+        d="M42 148C44 128 47 112 48 96 49 80 50 62 50 44 50 34 50 27 49 22"
+        stroke="#82ab5f"
+        strokeWidth="2.6"
+        strokeLinecap="round"
+      />
+      {leaves.map(([x, y, r, s], i) => (
+        <g key={i} transform={`translate(${x} ${y}) rotate(${r}) scale(${s})`}>
+          <path d="M0 0C-12 -14-12 -31 0 -43 12 -31 12 -14 0 0Z" fill="#a9cd8e" />
+          <path d="M0 -4V-39" stroke="#82ab5f" strokeWidth="1.6" strokeLinecap="round" />
+        </g>
+      ))}
+    </svg>
+  );
+}
+
 export function Teddy(props: DoodleProps) {
   const { title, rest } = base(props);
   return (

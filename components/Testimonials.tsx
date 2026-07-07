@@ -16,7 +16,7 @@ const TONE_BG: Record<string, string> = {
 };
 
 export default function Testimonials() {
-  const { railRef, scrollByPage } = useCarousel();
+  const { railRef, scrollByPage } = useCarousel(7000);
 
   return (
     <section id="testimonials" className="section-pad bg-cream">

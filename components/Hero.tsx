@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ChevronDown, Star as StarIcon } from "lucide-react";
 import Button from "@/components/ui/Button";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
-import { Dots, Heart, Rainbow, Star } from "@/components/decor/Doodles";
+import { Dots, Heart, LeafBranch, Rainbow, Star } from "@/components/decor/Doodles";
 import { Float, Twinkle } from "@/components/decor/Float";
 import { WHATSAPP_COMMUNITY_LINK } from "@/lib/whatsapp";
 
@@ -206,11 +206,11 @@ export default function Hero() {
           <Float className={`absolute -top-4 left-1/3 ${SOFT_PINK}`} duration={5.5} distance={8}>
             <Heart className="h-5 w-5" />
           </Float>
-          <Float className="absolute -bottom-5 -left-7" duration={7} delay={0.2} distance={8} rotate={-4}>
-            <Image src="/leaf.png" alt="" aria-hidden width={150} height={234} className="h-20 w-auto" />
+          <Float className="absolute -bottom-6 -left-8" duration={7} delay={0.2} distance={8} rotate={-4}>
+            <LeafBranch className="h-24 w-auto" />
           </Float>
-          <Float className="absolute top-[36%] -right-6 hidden lg:block" duration={6.5} delay={0.5} distance={7} rotate={3}>
-            <Image src="/leaf.png" alt="" aria-hidden width={150} height={234} className="h-16 w-auto" />
+          <Float className="absolute top-[34%] -right-7 hidden lg:block" duration={6.5} delay={0.5} distance={7} rotate={3}>
+            <LeafBranch className="h-20 w-auto -scale-x-100" />
           </Float>
           <Twinkle className={`absolute -left-5 top-1/3 ${GOLD}`} delay={0.6}>
             <Star className="h-5 w-5" />
