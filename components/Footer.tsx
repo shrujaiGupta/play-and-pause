@@ -13,13 +13,6 @@ import {
 } from "@/lib/site";
 import { NAV_LINKS } from "@/lib/content";
 
-const INFO_LINKS = [
-  { label: "Upcoming Sessions", href: "#sessions" },
-  { label: "A Day at Play & Pause", href: "#day" },
-  { label: "Why Parents Love Us", href: "#why" },
-  { label: "Booking & Payment", href: BOOKING_LINK },
-];
-
 const SOCIALS = [
   { label: "Instagram", href: INSTAGRAM_URL, Icon: InstagramIcon },
   { label: "WhatsApp", href: BOOKING_LINK, Icon: WhatsAppIcon },
@@ -30,7 +23,7 @@ export default function Footer() {
   return (
     <footer id="contact" className="bg-cream pt-16">
       <div className="site-container">
-        <div className="grid gap-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div className="grid gap-10 border-t border-border pt-12 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.3fr]">
           <div>
             <Logo />
             <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-charcoal-soft">
@@ -58,22 +51,6 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {NAV_LINKS.map(({ label, href }) => (
                 <li key={href}>
-                  <a
-                    href={href}
-                    className="text-[13.5px] text-charcoal-soft transition-colors hover:text-coral-deep"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-label="Information">
-            <h3 className="font-display text-base font-semibold text-brand-brown">Information</h3>
-            <ul className="mt-4 space-y-2.5">
-              {INFO_LINKS.map(({ label, href }) => (
-                <li key={label}>
                   <a
                     href={href}
                     className="text-[13.5px] text-charcoal-soft transition-colors hover:text-coral-deep"
