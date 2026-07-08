@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Playfair_Display, Poppins } from "next/font/google";
 import Providers from "@/components/Providers";
 import {
   INSTAGRAM_URL,
+  PHONE_DISPLAY,
   SITE_DESCRIPTION,
   SITE_EMAIL,
   SITE_LOCATION,
   SITE_NAME,
   SITE_URL,
 } from "@/lib/site";
+import { TESTIMONIALS } from "@/lib/content";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -77,10 +78,15 @@ export const metadata: Metadata = {
 const businessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#business`,
   name: SITE_NAME,
   description: SITE_DESCRIPTION,
   url: SITE_URL,
   email: SITE_EMAIL,
+  telephone: PHONE_DISPLAY,
+  image: `${SITE_URL}/hero4.jpg`,
+  logo: `${SITE_URL}/logo.png`,
+  priceRange: "₹499",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Jaipur",
@@ -89,6 +95,18 @@ const businessJsonLd = {
   },
   areaServed: SITE_LOCATION,
   sameAs: [INSTAGRAM_URL],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    reviewCount: TESTIMONIALS.length,
+    bestRating: "5",
+  },
+  review: TESTIMONIALS.map((t) => ({
+    "@type": "Review",
+    author: { "@type": "Person", name: t.name },
+    reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+    reviewBody: t.quote,
+  })),
 };
 
 export default function RootLayout({
@@ -99,8 +117,7 @@ export default function RootLayout({
       <body
         className={`${playfair.variable} ${poppins.variable} min-h-screen antialiased`}
       >
-        <Script
-          id="business-json-ld"
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(businessJsonLd) }}
         />

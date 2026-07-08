@@ -1,4 +1,4 @@
-export const SITE_URL = "https://playandpause.in";
+export const SITE_URL = "https://playandpause.club";
 export const SITE_NAME = "Play & Pause";
 export const SITE_TAGLINE = "Where little hands create, and moms find a moment to pause.";
 export const SITE_DESCRIPTION =

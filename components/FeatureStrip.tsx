@@ -59,6 +59,7 @@ export default function FeatureStrip() {
   return (
     <section id="features" className="bg-cream-deep pb-16 pt-2 md:pb-20">
       <div className="site-container">
+        <h2 className="sr-only">Why families love Play &amp; Pause</h2>
         <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
           {FEATURES.map((f, i) => (
             <motion.article
