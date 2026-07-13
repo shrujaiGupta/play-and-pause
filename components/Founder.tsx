@@ -32,7 +32,7 @@ export default function Founder() {
             <div className="mx-auto w-full max-w-xs lg:max-w-none">
               <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[var(--radius-card)] shadow-soft-lg ring-1 ring-white/60">
                 <Image
-                  src="/founder.webp"
+                  src="/founder.jpg"
                   alt="Somya Gupta, founder of Play & Pause"
                   fill
                   sizes="(max-width: 1024px) 20rem, 300px"

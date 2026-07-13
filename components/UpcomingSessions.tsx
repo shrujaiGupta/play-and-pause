@@ -114,8 +114,8 @@ export default function UpcomingSessions() {
             {/* ── LEFT: photo panel ── */}
             <div className="relative min-h-[420px] overflow-hidden rounded-[var(--radius-soft)] bg-peach/30">
               <Image
-                src="/sessions-left.jpg"
-                alt="A Play & Pause session set up with the branded sign, a teddy, rainbow toys and craft activities"
+                src="/upcoming-session.jpg"
+                alt="A little one at a Play & Pause session table with the branded sign, a wooden rainbow and craft activities"
                 fill
                 sizes="(max-width: 1024px) 90vw, 360px"
                 className="object-cover"

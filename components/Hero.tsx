@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ChevronDown, Star as StarIcon } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Button from "@/components/ui/Button";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { Dots, Heart, LeafBranch, Rainbow, Star } from "@/components/decor/Doodles";
@@ -87,7 +87,7 @@ export default function Hero() {
             {...fade(0)}
             className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.26em] text-coral-deep"
           >
-            Calm. Creative. Meaningful.
+            Play. Explore. Create.
             <Heart className={`h-3.5 w-3.5 ${SOFT_PINK}`} />
           </motion.p>
 
@@ -136,21 +136,6 @@ export default function Hero() {
               Explore Play &amp; Pause
               <ChevronDown className="h-4 w-4" />
             </Button>
-          </motion.div>
-
-          <motion.div
-            {...fade(0.4)}
-            className="mt-6 flex items-center justify-center gap-2.5 lg:justify-start"
-          >
-            <Heart className={`h-4 w-4 ${SOFT_PINK}`} />
-            <span className="text-[13px] font-medium text-charcoal-soft">
-              Trusted by 50+ Jaipur moms
-            </span>
-            <span className="flex gap-0.5">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <StarIcon key={i} className="h-4 w-4 fill-[#f6a01f] text-[#f6a01f]" />
-              ))}
-            </span>
           </motion.div>
         </div>
 
