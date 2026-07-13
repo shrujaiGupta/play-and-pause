@@ -90,14 +90,15 @@ export type GalleryItem = {
 };
 
 export const GALLERY: GalleryItem[] = [
-  { src: "/gallery/g1.jpg", alt: "A mom and her toddler decorating a Play & Pause Heart of Love activity card with colourful pom-poms" },
+  { src: "/gallery/g7.jpg", alt: "A proud little boy showing off his coloured Play & Pause activity sheet" },
   { src: "/gallery/g2.jpg", alt: "Two moms and their little ones enjoying a hands-on Play & Pause playdate together" },
   { src: "/gallery/g3.jpg", alt: "A smiling girl proudly holding up her completed Play & Pause oral-hygiene activity sheet" },
   { src: "/gallery/g4.jpg", alt: "Two boys colouring their Play & Pause oral-hygiene sheets with sticker dots" },
   { src: "/gallery/g5.jpg", alt: "A mom and her son placing stickers on a Play & Pause activity sheet" },
-  { src: "/gallery/g6.jpg", alt: "A little one colouring an activity sheet while his mom looks on at a Play & Pause session" },
-  { src: "/gallery/g7.jpg", alt: "A proud little boy showing off his coloured Play & Pause activity sheet" },
   { src: "/gallery/g8.jpg", alt: "Moms and toddlers gathered for a group photo in front of a mural at a Play & Pause playdate in Jaipur" },
+  { src: "/gallery/g1.jpg", alt: "A mom and her toddler decorating a Play & Pause Heart of Love activity card with colourful pom-poms" },
+  { src: "/gallery/g6.jpg", alt: "A little one colouring an activity sheet while his mom looks on at a Play & Pause session" },
+  { src: "/gallery/g9.jpg", alt: "Happy families wearing paper crowns at a Play & Pause session in Jaipur" },
 ];
 
 export const TIMELINE = [
