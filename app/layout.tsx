@@ -84,7 +84,7 @@ const businessJsonLd = {
   url: SITE_URL,
   email: SITE_EMAIL,
   telephone: PHONE_DISPLAY,
-  image: `${SITE_URL}/hero4.jpg`,
+  image: `${SITE_URL}/hero5.jpg`,
   logo: `${SITE_URL}/logo.png`,
   priceRange: "₹499",
   address: {

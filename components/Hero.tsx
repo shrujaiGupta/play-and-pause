@@ -172,10 +172,10 @@ export default function Hero() {
             <div className="bg-white p-2.5" style={{ clipPath: "url(#heroWave)" }}>
               <div style={{ clipPath: "url(#heroWave)" }}>
                 <Image
-                  src="/hero4.jpg"
-                  alt="Two moms and their toddlers enjoying a Play and Pause creative playdate in Jaipur"
-                  width={1040}
-                  height={690}
+                  src="/hero5.jpg"
+                  alt="Moms and their little ones wearing paper crowns at a Play and Pause playdate in Jaipur"
+                  width={1500}
+                  height={1050}
                   priority
                   sizes="(max-width: 1024px) 90vw, 520px"
                   className="block h-full w-full object-cover"
