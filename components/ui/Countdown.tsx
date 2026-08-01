@@ -25,7 +25,15 @@ function pad(n: number) {
   return n.toString().padStart(2, "0");
 }
 
-export default function Countdown({ target }: { target: string }) {
+type CountdownProps = {
+  target: string;
+  /** "sm" is the compact inline timer; "lg" is the full-width hero timer. */
+  size?: "sm" | "lg";
+  /** Shown instead of zeroed digits once the target has passed. */
+  expiredLabel?: string;
+};
+
+export default function Countdown({ target, size = "sm", expiredLabel }: CountdownProps) {
   const targetMs = new Date(target).getTime();
   const [time, setTime] = useState<Remaining | null>(null);
 
@@ -35,6 +43,41 @@ export default function Countdown({ target }: { target: string }) {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, [targetMs]);
+
+  const expired =
+    time !== null && time.days === 0 && time.hours === 0 && time.mins === 0 && time.secs === 0;
+
+  if (expired && expiredLabel) {
+    return (
+      <p className="rounded-2xl bg-white px-4 py-3 text-center font-display text-lg font-bold text-coral-deep shadow-[0_8px_20px_-12px_rgba(124,88,71,0.4)]">
+        {expiredLabel}
+      </p>
+    );
+  }
+
+  if (size === "lg") {
+    return (
+      <div
+        className="grid w-full grid-cols-4 gap-2 sm:gap-2.5"
+        role="timer"
+        aria-label="Time until the next session"
+      >
+        {UNITS.map(({ key, label }) => (
+          <div
+            key={key}
+            className="rounded-2xl bg-white px-1 py-3 text-center shadow-[0_10px_24px_-14px_rgba(124,88,71,0.5)]"
+          >
+            <span className="block font-display text-[26px] font-bold leading-none text-brand-brown tabular-nums sm:text-[32px]">
+              {time ? pad(time[key]) : "--"}
+            </span>
+            <span className="mt-1.5 block text-[9.5px] font-semibold uppercase tracking-wide text-charcoal-muted sm:text-[10px]">
+              {label}
+            </span>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-stretch gap-2.5" role="timer" aria-label="Time until the next session">

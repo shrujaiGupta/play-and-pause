@@ -2,7 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureStrip from "@/components/FeatureStrip";
 import Founder from "@/components/Founder";
-import UpcomingSessions from "@/components/UpcomingSessions";
+import SessionsSection from "@/components/SessionsSection";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <FeatureStrip />
-        <UpcomingSessions />
+        <SessionsSection />
         <Gallery />
         <Testimonials />
         <Founder />
