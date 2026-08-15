@@ -8,12 +8,17 @@
  *   event === null  → <UpcomingSessions />  the "we're planning the next one" card
  *   event !== null  → <LiveSession />       the full card with countdown and booking CTA
  *
- * The response is deliberately not cached: every page load asks the API, which
- * asks the database, so an edit in the admin is visible on the next refresh with
- * nothing to invalidate. The page carries `dynamic = "force-dynamic"` to match —
- * without it Next would render this once at build time and serve that copy.
+ * Nothing is cached anywhere: the browser asks /api/event on every page load,
+ * that route asks the API, the API asks the database. An edit in the admin is
+ * live on the next refresh, and every hop is visible in DevTools.
  */
-const API_BASE_URL = (
+
+/**
+ * Server-only — read by app/api/event/route.ts. It is not a NEXT_PUBLIC_
+ * variable, so the browser never sees where the backend lives; it only ever
+ * calls this app's own /api/event.
+ */
+export const API_BASE_URL = (
   process.env.API_BASE_URL || "http://127.0.0.1:8080"
 ).replace(/\/$/, "");
 
@@ -52,30 +57,36 @@ export type EventInfo = {
 /** Shown when no photo has been uploaded for the session. */
 export const FALLBACK_EVENT_IMAGE = "/upcoming-session.jpg";
 
-type EventResponse = {
-  success: boolean;
-  data?: { event: EventInfo | null };
-};
-
 /**
- * Never throws. If the API is unreachable or answers with something unexpected,
- * the section falls back to the "next playdate coming soon" card rather than
- * taking the whole page down with it.
+ * Called from the browser. Throws on any failure, with the message the route
+ * handler produced — <SessionsSection /> logs it and shows the "coming soon"
+ * card, so visitors get something sane while the reason stays readable in the
+ * console and in the Network tab.
+ *
+ * Distinguishing the two null-ish outcomes is the whole point: a resolved null
+ * means the API answered and no event is flagged live; a throw means the API
+ * could not be reached or disagreed with us.
  */
-export async function getLiveEvent(): Promise<EventInfo | null> {
-  try {
-    const response = await fetch(`${API_BASE_URL}/getEventData`, {
-      cache: "no-store",
-    });
+export async function fetchLiveEvent(): Promise<EventInfo | null> {
+  const response = await fetch("/api/event", {
+    headers: { accept: "application/json" },
+    cache: "no-store",
+  });
 
-    if (!response.ok) return null;
+  if (!response.ok) {
+    const message = await response
+      .json()
+      .then((body: { message?: string }) => body.message)
+      .catch(() => null);
 
-    const payload = (await response.json()) as EventResponse;
-
-    return payload.success ? (payload.data?.event ?? null) : null;
-  } catch {
-    return null;
+    throw new Error(
+      message ?? `GET /api/event failed with ${response.status}`,
+    );
   }
+
+  const payload = (await response.json()) as { event: EventInfo | null };
+
+  return payload.event;
 }
 
 /** Google Calendar's compact UTC stamp: 20260816T103000Z */
