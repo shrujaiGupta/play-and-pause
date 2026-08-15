@@ -8,15 +8,11 @@
  *   event === null  → <UpcomingSessions />  the "we're planning the next one" card
  *   event !== null  → <LiveSession />       the full card with countdown and booking CTA
  *
- * The response is cached indefinitely and purged on demand — the backend pings
- * /api/revalidate whenever the live event changes, so an edit in the admin shows
- * up immediately rather than on a timer. REVALIDATE_FALLBACK_SECONDS is only a
- * safety net for a ping that never arrives.
+ * The response is deliberately not cached: every page load asks the API, which
+ * asks the database, so an edit in the admin is visible on the next refresh with
+ * nothing to invalidate. The page carries `dynamic = "force-dynamic"` to match —
+ * without it Next would render this once at build time and serve that copy.
  */
-export const EVENT_CACHE_TAG = "event";
-
-const REVALIDATE_FALLBACK_SECONDS = 300;
-
 const API_BASE_URL = (
   process.env.API_BASE_URL || "http://127.0.0.1:8080"
 ).replace(/\/$/, "");
@@ -69,10 +65,7 @@ type EventResponse = {
 export async function getLiveEvent(): Promise<EventInfo | null> {
   try {
     const response = await fetch(`${API_BASE_URL}/getEventData`, {
-      next: {
-        tags: [EVENT_CACHE_TAG],
-        revalidate: REVALIDATE_FALLBACK_SECONDS,
-      },
+      cache: "no-store",
     });
 
     if (!response.ok) return null;

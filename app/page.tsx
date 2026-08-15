@@ -9,6 +9,13 @@ import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import FloatingBook from "@/components/FloatingBook";
 
+/**
+ * Rendered per request rather than at build time, so <SessionsSection /> reads
+ * the live event straight from the API on every refresh. Everything else on the
+ * page is static, but the whole route has to be dynamic for that one section.
+ */
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>
