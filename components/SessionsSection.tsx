@@ -1,13 +1,16 @@
 import LiveSession from "@/components/LiveSession";
 import UpcomingSessions from "@/components/UpcomingSessions";
-import { IS_EVENT_LIVE } from "@/lib/event";
+import { getLiveEvent } from "@/lib/event";
 
 /**
  * Single switch for the "Sessions" block on the landing page.
  *
- * When the backend flag lands, make this component async and await it here —
- * both branches already render a self-contained <section id="sessions">.
+ * Both branches render a self-contained <section id="sessions">, so the page
+ * layout is identical either way. No live event — or an API that could not be
+ * reached — falls through to the "coming soon" card.
  */
-export default function SessionsSection() {
-  return IS_EVENT_LIVE ? <LiveSession /> : <UpcomingSessions />;
+export default async function SessionsSection() {
+  const event = await getLiveEvent();
+
+  return event ? <LiveSession event={event} /> : <UpcomingSessions />;
 }

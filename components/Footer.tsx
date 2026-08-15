@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import Logo from "@/components/Logo";
 import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
@@ -110,9 +111,22 @@ export default function Footer() {
             <Heart className="h-3.5 w-3.5 text-coral" />
             in Jaipur.
           </p>
-          <p className="text-[13px] text-charcoal-muted">
-            Curated playdates &amp; creative experiences.
-          </p>
+          <a
+            href="https://www.combineapps.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-[13px] text-charcoal-muted transition-colors hover:text-coral-deep"
+          >
+            Developed and maintained by CombineApps
+            <Image
+              src="/combineapps-logo.webp"
+              alt="CombineApps"
+              width={96}
+              height={96}
+              sizes="16px"
+              className="h-4 w-4 shrink-0 object-contain"
+            />
+          </a>
         </div>
       </div>
     </footer>

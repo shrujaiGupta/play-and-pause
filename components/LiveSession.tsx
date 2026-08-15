@@ -17,43 +17,47 @@ import WhatsAppIcon from "@/components/ui/WhatsAppIcon";
 import { Heart, LeafBranch, Rainbow, Star } from "@/components/decor/Doodles";
 import { Float, Twinkle } from "@/components/decor/Float";
 import { whatsappLink, WHATSAPP_COMMUNITY_LINK } from "@/lib/whatsapp";
-import { googleCalendarLink, UPCOMING_EVENT } from "@/lib/event";
+import {
+  FALLBACK_EVENT_IMAGE,
+  googleCalendarLink,
+  type EventInfo,
+} from "@/lib/event";
 
 const GOLD = "text-[#f4b63c]";
 const SOFT_PINK = "text-[#ffb0c0]";
 
-const event = UPCOMING_EVENT;
-
-const DETAILS = [
-  {
-    Icon: CalendarDays,
-    label: "Date",
-    value: event.date,
-    ring: "bg-pink/60",
-    color: "text-coral-deep",
-  },
-  {
-    Icon: Clock,
-    label: "Time",
-    value: event.time,
-    ring: "bg-sunshine/50",
-    color: "text-orange",
-  },
-  {
-    Icon: Users,
-    label: "Ages",
-    value: event.ageRange,
-    ring: "bg-lavender/70",
-    color: "text-purple",
-  },
-  {
-    Icon: MapPin,
-    label: "Venue",
-    value: event.venue,
-    ring: "bg-mint/60",
-    color: "text-green",
-  },
-];
+function detailsFor(event: EventInfo) {
+  return [
+    {
+      Icon: CalendarDays,
+      label: "Date",
+      value: event.dateLabel,
+      ring: "bg-pink/60",
+      color: "text-coral-deep",
+    },
+    {
+      Icon: Clock,
+      label: "Time",
+      value: event.timeLabel,
+      ring: "bg-sunshine/50",
+      color: "text-orange",
+    },
+    {
+      Icon: Users,
+      label: "Ages",
+      value: event.ageRange,
+      ring: "bg-lavender/70",
+      color: "text-purple",
+    },
+    {
+      Icon: MapPin,
+      label: "Venue",
+      value: event.venue,
+      ring: "bg-mint/60",
+      color: "text-green",
+    },
+  ];
+}
 
 /* Small "live" pill with a softly pulsing dot — sits over the photo. */
 function LivePill() {
@@ -68,7 +72,9 @@ function LivePill() {
   );
 }
 
-export default function LiveSession() {
+export default function LiveSession({ event }: { event: EventInfo }) {
+  const details = detailsFor(event);
+
   return (
     <section id="sessions" className="bg-cream-deep pb-20 md:pb-28">
       <div className="site-container">
@@ -95,7 +101,7 @@ export default function LiveSession() {
             {/* ── LEFT: photo panel ── */}
             <div className="relative min-h-[300px] overflow-hidden rounded-[var(--radius-soft)] bg-peach/30 sm:min-h-[360px] lg:min-h-[520px]">
               <Image
-                src={event.image}
+                src={event.imageUrl || FALLBACK_EVENT_IMAGE}
                 alt={event.imageAlt}
                 fill
                 sizes="(max-width: 1024px) 92vw, 420px"
@@ -153,7 +159,7 @@ export default function LiveSession() {
 
               {/* ── detail tiles ── */}
               <dl className="mt-4 grid gap-2.5 sm:grid-cols-2">
-                {DETAILS.map(({ Icon, label, value, ring, color }) => (
+                {details.map(({ Icon, label, value, ring, color }) => (
                   <div
                     key={label}
                     className="flex items-center gap-3 rounded-2xl bg-cream/70 px-3.5 py-3"
