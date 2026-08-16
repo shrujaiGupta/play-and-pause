@@ -20,6 +20,13 @@ import { API_BASE_URL, type EventInfo } from "@/lib/event";
  */
 export const dynamic = "force-dynamic";
 
+/**
+ * Run in Mumbai, next to the backend. Vercel would otherwise place this function
+ * in its default region, and every request would pay a round trip across the
+ * world before the backend even sees it.
+ */
+export const preferredRegion = "bom1";
+
 type EventResponse = {
   success: boolean;
   data?: { event: EventInfo | null };
